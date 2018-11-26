@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link 	rel="stylesheet" 
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+			crossorigin="anonymous" >
+</head>
+
+<body>
+
+	<div id="div1">
+	<p style="font-size:160%; color: white" id="p1">This is a paragraph.</p>
+	<p id="p2">This is another paragraph.</p>
+	</div>
+
+	<script type="text/javascript">
+		var iFrequency = 1000; // expressed in miliseconds
+		var myInterval = 0;
+		var greenInterval = 0;
+		var yellowInterval = 0;
+		var redInterval = 0;
+		var neutralInterval = 0;
+		var child = document.getElementById("p1");
+
+		// STARTS and Resets the loop if any
+		function startLoop() {
+		    if(myInterval > 0) clearInterval(myInterval);  // stop
+		    myInterval = setInterval( "doSomething()", iFrequency );  // run
+		}
+
+		function doSomething()
+		{
+			var currentdate = new Date();
+			var datetime = "Last Sync: " + currentdate.getDay() + "/"+currentdate.getMonth() 
+			+ "/" + currentdate.getFullYear() + " @ " 
+			+ currentdate.getHours() + ":" 
+			+ currentdate.getMinutes() + ":" + currentdate.getSeconds() + ":" + currentdate.getMilliseconds();
+			//var para = document.createElement("p");
+			//var node = document.createTextNode("This is new."+ datetime);
+			//para.appendChild(node);
+			var element = document.getElementById("div1");
+			var child = document.getElementById("p1").innerHTML = "" + datetime;
+			var child
+			
+			//var element = document.getElementById("div1");
+			//var child = document.getElementById("p1");
+			//element.insertBefore(para, child);
+
+		}
+		function runSemaforo()
+		{
+			if(myInterval > 0) clearInterval(myInterval);  // stop
+			myInterval = setInterval( "avviaSemaforo()", 4000 );
+		}
+
+		function avviaSemaforo()
+		{
+			//neutralInterval = setInterval("neutral()", 0);
+		    greenInterval = setInterval( "verde()", 500 );  // run
+		    
+		    //yellowInterval = setInterval( "giallo()", 250 );
+		    //redInterval = setInterval( "rosso()", 1250 );
+		}
+
+		/*
+		function neutral()
+		{
+*/
+		
+
+		function verde()
+		{
+			var currentdate = new Date();
+			var datetime = "Last Sync: " + currentdate.getDay() + "/"+currentdate.getMonth() 
+			+ "/" + currentdate.getFullYear() + " @ " 
+			+ currentdate.getHours() + ":" 
+			+ currentdate.getMinutes() + ":" + currentdate.getSeconds() + ":" + currentdate.getMilliseconds();
+			child.innerHTML = "verde  " + datetime;
+			child.style.background = "green";
+			setTimeout("giallo()", 7000);
+		}
+
+		function giallo()
+		{
+			var currentdate = new Date();
+			var datetime = "Last Sync: " + currentdate.getDay() + "/"+currentdate.getMonth() 
+			+ "/" + currentdate.getFullYear() + " @ " 
+			+ currentdate.getHours() + ":" 
+			+ currentdate.getMinutes() + ":" + currentdate.getSeconds() + ":" + currentdate.getMilliseconds();
+			child.innerHTML = "giallo  " + datetime;
+			child.style.background = "yellow";
+			setTimeout("rosso()", 2000);
+					
+		}
+
+		function rosso()
+		{
+			var currentdate = new Date();
+			var datetime = "Last Sync: " + currentdate.getDay() + "/"+currentdate.getMonth() 
+			+ "/" + currentdate.getFullYear() + " @ " 
+			+ currentdate.getHours() + ":" 
+			+ currentdate.getMinutes() + ":" + currentdate.getSeconds() + ":" + currentdate.getMilliseconds();
+			//child.innerHTML = "rosso  " + datetime;
+			child.style.background = "red";
+			setTimeout("verde()", 3500);
+		}
+	</script>
+  	
+  	<input 	type="button" onclick="verde(); return false;" 
+       		value="Avvia semaforo" />
+
+  <p>...After the script.</p>
+
+</body>
+
+</html>
+
+
+
